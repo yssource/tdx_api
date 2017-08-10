@@ -33,8 +33,12 @@ boost::python::list format(vector<tdx_data>& datas, vector<tdx_error>& errors) {
 
 struct TdxApi {
 	TdxInstance instance;
-	void init(string dll) {
-		instance.Init(dll);
+	void Open(string dll) {
+		instance.Open(dll);
+	}
+
+	void Close() {
+		instance.Close();
 	}
 	
 	boost::python::list login(char* IP, short Port, char* Version, short YybID, char* AccountNo, char* TradeAccount, char* JyPassword, char* TxPassword) {
@@ -169,7 +173,8 @@ BOOST_PYTHON_MODULE(tdx_api)
 {
 	using namespace boost::python;
 	class_<TdxApi>("TdxApi").
-		def("init", &TdxApi::init).
+		def("Open", &TdxApi::Open).
+		def("Close", &TdxApi::Close).
 		def("Logon", &TdxApi::login).
 		def("Logoff", &TdxApi::logoff).
 		def("QueryHistoryData", &TdxApi::QueryHistoryData).

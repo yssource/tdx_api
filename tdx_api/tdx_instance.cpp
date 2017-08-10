@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void TdxInstance::Init(string dll_name)
+void TdxInstance::Open(string dll_name)
 {
 	module_ = LoadLibrary(dll_name.c_str());
 	//»ñÈ¡apiº¯Êý
@@ -31,8 +31,7 @@ void TdxInstance::Init(string dll_name)
 	OpenTdx();
 }
 
-TdxInstance::~TdxInstance()
-{
+void TdxInstance::Close() {
 	CloseTdx();
 	FreeLibrary(module_);
 }

@@ -8,10 +8,8 @@ using namespace std;
 class TdxInstance 
 {
 public:
-	//constructor private 
-	void Init(string dll_name);
-	//destructor
-	~TdxInstance();
+	void Open(string dll_name);
+	void Close();
 	int login(string& ip, short& port, string& version, short& yybId, string& AccountNo, string& TradeAccount, string& jyPassword, string& txPassword) noexcept;
 	void log_off(const int& client_ID);
 	//definitions for functions 
